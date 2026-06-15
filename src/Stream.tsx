@@ -11,7 +11,6 @@ import React, {
 import { StreamPlayerApi, StreamProps, VideoDimensions } from "./types";
 import { useStreamSDK, safelyAccessStreamSDK } from "./useStreamSDK";
 import { useIframeSrc } from "./useIframeSrc";
-import { validSrcUrl } from "./validSrcUrl";
 
 /**
  * Hook for syncing properties to the SDK api when they change
@@ -163,11 +162,6 @@ export const StreamEmbed: FC<StreamProps> = ({
     startTime,
   });
 
-  // While it's easier for most consumers to simply provide the video UID
-  // or signed token and have us compute the iframe's src for them, some
-  // consumers may need to manually specify the iframe's src.
-  const iframeSrc = validSrcUrl(src) ? src : computedSrc;
-
   useProperty("muted", ref, muted);
   useProperty("controls", ref, controls);
   useProperty("src", ref, src);
@@ -234,7 +228,7 @@ export const StreamEmbed: FC<StreamProps> = ({
     >
       <iframe
         ref={iframeRef}
-        src={iframeSrc}
+        src={computedSrc}
         title={title}
         style={responsive ? responsiveIframeStyles : undefined}
         frameBorder={0}
