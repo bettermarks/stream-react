@@ -19,18 +19,18 @@ jobs:
       - run: yarn build
       - run: yarn test
 
-  publish-npm-release:
+  publish-gpr-release:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
+          node-version: 24
+          registry-url: https://npm.pkg.github.com/
       - run: yarn --frozen-lockfile
       # Only publish when tag does not include beta or rc suffix
       - run: if [[ ${TAG_NAME} =~ ^v[0-9]+.[0-9]+.[0-9]+$ ]]; then npm publish; fi
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           TAG_NAME: ${{github.event.release.tag_name}}
