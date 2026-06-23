@@ -17,6 +17,6 @@
     "@types/react-dom": "^16.8.4",
     "parcel": "^1.12.3",
     "typescript": "^3.4.5",
-    "vite": "^5.0.5"
+    "vite": "^6.4.3"
   }
 }
