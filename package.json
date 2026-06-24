@@ -39,7 +39,7 @@
   "author": "Kevin Kipp",
   "module": "dist/stream-react.esm.js",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
+    "@babel/core": "^7.29.6",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
     "@storybook/addon-info": "^5.3.18",
